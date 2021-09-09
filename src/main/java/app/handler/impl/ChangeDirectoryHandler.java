@@ -4,7 +4,7 @@ import app.handler.Handler;
 
 public class ChangeDirectoryHandler implements Handler {
     @Override
-    public Handler getInstance(String cmd) {
+    public Handler handle(String cmd) {
         return null;
     }
 }

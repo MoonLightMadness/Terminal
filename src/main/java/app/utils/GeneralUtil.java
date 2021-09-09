@@ -21,6 +21,10 @@ public class GeneralUtil {
         return configer.readConfig(property);
     }
 
+    public static void writeConfig(String filePath,String key,String value){
+        configer.updateConfig(key,value,filePath);
+    }
+
     public static void info(String msg,Object... args){
         log.info(msg, args);
     }

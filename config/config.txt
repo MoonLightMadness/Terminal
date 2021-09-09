@@ -9,3 +9,9 @@ log.save.path = ./log
 # null
 # DataType:null
 log.date = 2021-09-09
+
+server.path = ${sys.name}
+
+server.ip = 127.0.0.1
+
+server.port = 10010
