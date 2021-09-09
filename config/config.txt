@@ -1,0 +1,11 @@
+
+system.config.path = ./config/config.txt
+
+sys.name = Terminal
+
+
+log.save.path = ./log
+
+# null
+# DataType:null
+log.date = 2021-09-09
