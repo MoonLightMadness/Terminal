@@ -2,7 +2,7 @@ package app.utils;
 
 import app.log.LogSystem;
 import app.log.LogSystemFactory;
-import app.utils.domain.RGB;
+
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -180,18 +180,6 @@ public class ImageUtils {
             return 0;
         }
         return pixel;
-    }
-
-    private RGB getRGB(int pixel) {
-        int r = (pixel >> 16) & 0xff;
-        int g = (pixel >> 8) & 0xff;
-        int b = pixel & 0xff;
-        RGB rgb = new RGB();
-        rgb.setRed(r);
-        rgb.setBlue(b);
-        rgb.setGreen(g);
-        rgb.setColor(pixel);
-        return rgb;
     }
 
 

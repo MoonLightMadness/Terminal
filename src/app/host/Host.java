@@ -14,6 +14,6 @@ public class Host {
 
     private SocketChannel socketChannel;
 
-    private Configer configer;
+
 
 }

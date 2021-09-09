@@ -1,15 +1,12 @@
 package app.utils;
 
-
 import app.exception.ServiceException;
 import app.exception.UniversalErrorCodeEnum;
 import app.log.LogSystem;
 import app.log.LogSystemFactory;
 import app.parser.impl.JSONParserImpl;
 import app.utils.datastructure.XByteBuffer;
-import app.utils.domain.Variable;
 import lombok.SneakyThrows;
-
 import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -580,18 +577,7 @@ public class SimpleUtils {
     }
 
 
-    public Variable getVariable(Object obj) {
-        Variable variable = new Variable();
-        try {
-            Class clazz = obj.getClass();
-            variable.setName(clazz.getSimpleName());
-            variable.setFullName(clazz.getTypeName());
-            variable.setValue(obj);
-        } catch (Exception ex) {
-            log.error("获取变量属性失败，原因：{}", ex);
-        }
-        return variable;
-    }
+
 
     public boolean hasClassAnnotation(Class clazz, Class annotationType) {
         Annotation annotation = clazz.getDeclaredAnnotation(annotationType);
