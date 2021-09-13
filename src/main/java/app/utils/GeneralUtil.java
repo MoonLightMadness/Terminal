@@ -29,7 +29,7 @@ public class GeneralUtil {
 
 
     public static void writeConfig(String filePath,String key,String value){
-        configer.updateConfig(key,value,filePath);
+        configer.writeConfig(filePath,key,value,null,null);
     }
 
     public static void info(String msg,Object... args){

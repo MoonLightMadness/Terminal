@@ -51,15 +51,22 @@ public class Application {
         httpBuilder.setCode("200").setServer("DSMServer/1.0")
                 .setHost(GeneralUtil.readConfig("ip") + " " + GeneralUtil.readConfig("port"));
         httpBuilder.setData(msg);
+        httpBuilder.setPath("/server/gettime");
         host.send(httpBuilder.toString());
     }
 
     public static void handleReceive(){
-        byte[] data = host.read();
-        PathChangeVO pathChangeVO = (PathChangeVO) SimpleUtils.parseTo(data,PathChangeVO.class);
-        if(pathChangeVO.getChangedPath() != null){
-            pathHandler.setPath(pathChangeVO.getChangedPath());
+        try {
+            Thread.sleep(100);
+            byte[] data = host.read();
+            PathChangeVO pathChangeVO = (PathChangeVO) SimpleUtils.parseTo(data,PathChangeVO.class);
+            if(pathChangeVO.getChangedPath() != null){
+                pathHandler.setPath(pathChangeVO.getChangedPath());
+            }
+            System.out.println(new String(data));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        System.out.println(new String(data));
+
     }
 }

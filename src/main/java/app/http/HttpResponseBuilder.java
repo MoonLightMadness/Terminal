@@ -1,5 +1,7 @@
 package app.http;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
 /**
@@ -8,6 +10,7 @@ import java.time.LocalDateTime;
  * @Date 2021-08-17 08:45:04
  * @Author ZhangHL
  */
+@Data
 public class HttpResponseBuilder {
 //    POST / HTTP/1.1
 //    Content-Type: application/json
@@ -70,7 +73,7 @@ public class HttpResponseBuilder {
      */
     private String host;
 
-
+    private String path;
 
     public HttpResponseBuilder setCode(String code){
         this.code = code;
@@ -106,7 +109,7 @@ public class HttpResponseBuilder {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(protocol).append(" ").append(code).append("\n");
+        sb.append(protocol).append(" ").append(path).append(" ").append(code).append("\n");
         sb.append("Content-Type: ").append(contentType).append("\n");
         sb.append("Connection: ").append(connection).append("\n");
         sb.append("Date: ").append(LocalDateTime.now()).append("\n");

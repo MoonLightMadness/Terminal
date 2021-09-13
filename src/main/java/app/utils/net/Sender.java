@@ -32,7 +32,6 @@ public class Sender {
         buffer.flip();
         try {
             channel.write(buffer);
-            channel.close();
         } catch (IOException e) {
             ;
         }

@@ -8,7 +8,7 @@ log.save.path = ./log
 
 # null
 # DataType:null
-log.date = 2021-09-09
+log.date = 2021-09-13
 
 server.path = ${sys.name}
 
@@ -22,3 +22,7 @@ clean.white = entertainment
 clean.white = temp
 clean.white = work
 clean.white = 龟龟SVN
+clean.white = work
+clean.white = code
+clean.white = Study
+clean.white = sys

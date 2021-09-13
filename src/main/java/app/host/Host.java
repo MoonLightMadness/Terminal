@@ -7,6 +7,8 @@ import app.utils.net.Sender;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 
@@ -20,9 +22,13 @@ public class Host {
 
     private SocketChannel socketChannel;
 
+    private Selector selector;
+
     public void init() {
         try {
             socketChannel = SocketChannel.open();
+//            selector = Selector.open();
+//            socketChannel.register(selector, SelectionKey.OP_READ);
             //socketChannel.configureBlocking(false);
         } catch (IOException e) {
             GeneralUtil.error("套接字开启失败，原因：{}", e);
@@ -33,6 +39,7 @@ public class Host {
     public void connectRemote() {
         String ip = GeneralUtil.readConfig("server.ip");
         String port = GeneralUtil.readConfig("server.port");
+        System.out.println(ip+" "+port);
         try {
             socketChannel.connect(new InetSocketAddress(ip, Integer.parseInt(port)));
         } catch (IOException e) {
@@ -60,5 +67,24 @@ public class Host {
         close();
         return res;
     }
+
+    //    public byte[] read() {
+//        while (true){
+//            try {
+//                selector.select();
+//                Iterator<SelectionKey> selectionKeys = selector.selectedKeys().iterator();
+//                while (selectionKeys.hasNext()){
+//                    SelectionKey key = selectionKeys.next();
+//                    byte[] res = SimpleUtils.receiveDataInNIO((SocketChannel) key.channel());
+//                    close();
+//                    return res;
+//                }
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//    }
 
 }
