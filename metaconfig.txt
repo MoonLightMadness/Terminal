@@ -1,2 +1,4 @@
 
 local_path = ./config/config.txt
+
+local_path = ./config/alias.txt

@@ -15,3 +15,10 @@ server.path = ${sys.name}
 server.ip = 127.0.0.1
 
 server.port = 10010
+
+#DesktopCleaner
+clean.time.interval = 1d
+clean.white = entertainment
+clean.white = temp
+clean.white = work
+clean.white = 龟龟SVN

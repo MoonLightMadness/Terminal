@@ -4,6 +4,8 @@ import app.config.Configer;
 import app.log.LogSystem;
 import app.log.LogSystemFactory;
 
+import java.util.List;
+
 /**
  * @ClassName : app.utils.GeneralUtil
  * @Description :
@@ -20,6 +22,11 @@ public class GeneralUtil {
     public static String readConfig(String property){
         return configer.readConfig(property);
     }
+
+    public static List<String> readConfigList(String property){
+        return configer.readConfigList(property);
+    }
+
 
     public static void writeConfig(String filePath,String key,String value){
         configer.updateConfig(key,value,filePath);
