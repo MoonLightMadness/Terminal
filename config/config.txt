@@ -8,7 +8,7 @@ log.save.path = ./log
 
 # null
 # DataType:null
-log.date = 2021-09-13
+log.date = 2021-09-14
 
 server.path = ${sys.name}
 

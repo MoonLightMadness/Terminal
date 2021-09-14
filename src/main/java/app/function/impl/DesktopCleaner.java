@@ -31,8 +31,15 @@ public class DesktopCleaner implements Function {
     public String doFunc(String[] args) {
         //初始化，环境检测与搭建
         init();
-        removeToTemp();
-        return null;
+        while (true){
+            try {
+                removeToTemp();
+                Thread.sleep(Long.parseLong(GeneralUtil.readConfig("clean.time.interval")));
+            } catch (InterruptedException e) {
+                GeneralUtil.error("出现异常，原因:{}",e);
+                e.printStackTrace();
+            }
+        }
     }
 
     private void init(){
@@ -86,33 +93,6 @@ public class DesktopCleaner implements Function {
         return files;
     }
 
-
-
-    @Test
-    public void test(){
-        DesktopCleaner desktopCleaner = new DesktopCleaner();
-        desktopCleaner.doFunc(null);
-    }
-
-    @Test
-    public void test2(){
-        String path = "C:/Users/Administrator/Desktop/temp/log.txt";
-        GeneralUtil.writeConfig(path,"eee","aaa");
-//        File f = new File(path);
-//        System.out.println(f.exists());
-//        try {
-//            synchronized (Configer.class) {
-//                BufferedWriter bw = new BufferedWriter(new FileWriter(f, true));
-//                bw.write("key" + " = " + "value");
-//                bw.newLine();
-//                bw.flush();
-//                bw.close();
-//            }
-//        } catch (IOException e) {
-//            GeneralUtil.error(e.getMessage());
-//            e.printStackTrace();
-//        }
-    }
 
     public long parseConfig() {
         String autosave = GeneralUtil.readConfig("clean.time.interval");
