@@ -1,4 +1,5 @@
 import app.domain.vo.PathChangeVO;
+import app.function.Function;
 import app.handler.impl.PathHandler;
 import app.host.Host;
 import app.http.HttpResponseBuilder;
@@ -8,6 +9,9 @@ import app.utils.SimpleUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 /**
  * @ClassName : PACKAGE_NAME.Application
@@ -24,18 +28,29 @@ public class Application {
 
     public static void main(String[] args) {
 
-        host.init();
-
         //启动输入流
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String input;
         while (true){
             try {
-                showIndicator();
                 input = reader.readLine();
-                handleSend(input);
-                handleReceive();
-            } catch (IOException e) {
+                String cmd = GeneralUtil.readConfig(input);
+                if(cmd != null){
+                   try {
+                       Class clazz = Class.forName(cmd);
+                       Function function = (Function) clazz.getDeclaredConstructor().newInstance();
+                       function.doFunc(null);
+                   } catch (InvocationTargetException e) {
+                       e.printStackTrace();
+                   } catch (InstantiationException e) {
+                       e.printStackTrace();
+                   } catch (IllegalAccessException e) {
+                       e.printStackTrace();
+                   }
+                }else {
+                    GeneralUtil.error("未找到属性值");
+                }
+            } catch (IOException | ClassNotFoundException | NoSuchMethodException e) {
                 GeneralUtil.info("发生错误,原因:{}",e);
                 e.printStackTrace();
             }

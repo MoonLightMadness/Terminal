@@ -34,7 +34,10 @@ public class DesktopCleaner implements Function {
         while (true){
             try {
                 removeToTemp();
-                Thread.sleep(Long.parseLong(GeneralUtil.readConfig("clean.time.interval")));
+                GeneralUtil.info("清理完成");
+                long interval = parseConfig();
+                GeneralUtil.info("下次清理时间:{}ms后",interval);
+                Thread.sleep(interval);
             } catch (InterruptedException e) {
                 GeneralUtil.error("出现异常，原因:{}",e);
                 e.printStackTrace();
@@ -55,7 +58,7 @@ public class DesktopCleaner implements Function {
                 e.printStackTrace();
             }
         }
-
+        GeneralUtil.info("初始化完成");
     }
 
     private void removeToTemp(){
